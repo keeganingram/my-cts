@@ -1,7 +1,7 @@
 10.times do |blog|
     Blog.create!(
       title: "My Blog Post #{blog}",
-      body:"Because it's the best game ever made. The graphics look like they were drawn by a four year old with the talents of Pablo Picasso, in his prime. Which is what I would've said if I liked the graphics which I do. Not."
+      body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
     )    
  end 
  
@@ -20,7 +20,7 @@ puts "5 skills created"
    Portfolio.create!(
        title: "Portfolio title: #{portfolio_item}",
        subtitle: "Great service" ,
-       body:"Because it's the best game ever made. The graphics look like they were drawn by a four year old with the talents of Pablo Picasso, in his prime. Which is what I would've said if I liked the graphics which I do. Not." ,
+       body:"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." ,
        main_image: "http://placehold.it/600x400" ,
        thumb_image: "http://placehold.it/350x200"
     )
