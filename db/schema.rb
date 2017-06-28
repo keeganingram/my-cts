@@ -1,4 +1,3 @@
-
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -11,19 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161230234724) do
+ActiveRecord::Schema.define(version: 20170628145539) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "blogs", force: :cascade do |t|
+  create_table "blogs", id: :bigserial, force: :cascade do |t|
     t.string   "title"
     t.text     "body"
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.string   "slug"
-    t.integer  "status",     default: 0
+    t.integer  "status"
+    t.integer  "topic_id"
     t.index ["slug"], name: "index_blogs_on_slug", unique: true, using: :btree
+    t.index ["topic_id"], name: "index_blogs_on_topic_id", using: :btree
   end
 
   create_table "friendly_id_slugs", force: :cascade do |t|
@@ -38,7 +39,7 @@ ActiveRecord::Schema.define(version: 20161230234724) do
     t.index ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type", using: :btree
   end
 
-  create_table "portfolios", force: :cascade do |t|
+  create_table "portfolios", id: :bigserial, force: :cascade do |t|
     t.string   "title"
     t.string   "subtitle"
     t.text     "body"
@@ -48,11 +49,18 @@ ActiveRecord::Schema.define(version: 20161230234724) do
     t.datetime "updated_at",  null: false
   end
 
-  create_table "skills", force: :cascade do |t|
+  create_table "skills", id: :bigserial, force: :cascade do |t|
     t.string   "title"
     t.integer  "percent_utilized"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
   end
 
+  create_table "topics", force: :cascade do |t|
+    t.string   "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_foreign_key "blogs", "topics"
 end
