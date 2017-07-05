@@ -10,18 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170629153235) do
+ActiveRecord::Schema.define(version: 20170629160140) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "blogs", id: :bigserial, force: :cascade do |t|
+  create_table "blogs", force: :cascade do |t|
     t.string   "title"
     t.text     "body"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
     t.string   "slug"
-    t.integer  "status"
+    t.integer  "status",     default: 0
     t.integer  "topic_id"
     t.index ["slug"], name: "index_blogs_on_slug", unique: true, using: :btree
     t.index ["topic_id"], name: "index_blogs_on_topic_id", using: :btree
@@ -39,7 +39,7 @@ ActiveRecord::Schema.define(version: 20170629153235) do
     t.index ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type", using: :btree
   end
 
-  create_table "portfolios", id: :bigserial, force: :cascade do |t|
+  create_table "portfolios", force: :cascade do |t|
     t.string   "title"
     t.string   "subtitle"
     t.text     "body"
@@ -49,12 +49,20 @@ ActiveRecord::Schema.define(version: 20170629153235) do
     t.datetime "updated_at",  null: false
   end
 
-  create_table "skills", id: :bigserial, force: :cascade do |t|
+  create_table "skills", force: :cascade do |t|
     t.string   "title"
     t.integer  "percent_utilized"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
     t.text     "badge"
+  end
+
+  create_table "technologies", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "portfolio_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.index ["portfolio_id"], name: "index_technologies_on_portfolio_id", using: :btree
   end
 
   create_table "topics", force: :cascade do |t|
@@ -64,4 +72,5 @@ ActiveRecord::Schema.define(version: 20170629153235) do
   end
 
   add_foreign_key "blogs", "topics"
+  add_foreign_key "technologies", "portfolios"
 end
